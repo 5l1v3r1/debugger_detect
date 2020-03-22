@@ -64,7 +64,7 @@ int nt_close_invalid_handle()
 	return 0;
 }
 
-int nt_query_information_process_process_debug_flags()
+int nt_query_information_process_debug_flags()
 {
 	const auto debug_flags = 0x1f;
 
@@ -85,7 +85,7 @@ int nt_query_information_process_process_debug_flags()
 	return 0;
 }
 
-int nt_query_information_process_process_debug_object()
+int nt_query_information_process_debug_object()
 {
 	const auto debug_object_handle = 0x1e;
 
@@ -109,7 +109,7 @@ int nt_query_information_process_process_debug_object()
 }
 
 
-int nt_query_object_object_all_types_information()
+int nt_query_object_all_types_information()
 {
 	const auto query_object = reinterpret_cast<NtQueryObjectTypedef>(GetProcAddress(
 		GetModuleHandleW(L"ntdll.dll"), "NtQueryObject"));
@@ -283,17 +283,17 @@ int main()
 		log("CheckRemoteDebuggerPresent detected\r\n");
 	}
 
-	if (nt_query_information_process_process_debug_flags() != 0)
+	if (nt_query_information_process_debug_flags() != 0)
 	{
 		log("NtQueryInformationProcess with ProcessDebugFlags detected\r\n");
 	}
 
-	if (nt_query_information_process_process_debug_object() != 0)
+	if (nt_query_information_process_debug_object() != 0)
 	{
 		log("NtQueryInformationProcess with ProcessDebugObject detected\r\n");
 	}
 
-	if (nt_query_object_object_all_types_information() != 0)
+	if (nt_query_object_all_types_information() != 0)
 	{
 		log("NtQueryObject with ObjectAllTypesInformation detected\r\n");
 	}
